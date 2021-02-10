@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login </title>
+</head>
+<body>
+<div>
+    <form method="post" action="/login">
+<!--        <div><label> Login: <input name="j_username"/></label></div>-->
+<!--        <div><label> Password: <input name="j_password"/></label></div>-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>-->
+<!--        <div><input type="submit" value="Sing In"/></div>-->
+        <table>
+            <tr>
+                <td>Login:</td>
+                <td><input type='text' name='j_username' value=''></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type='password' name='j_password' /></td>
+            </tr>
+            <tr>
+                <td><input name="submit" type="submit" value="submit" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
