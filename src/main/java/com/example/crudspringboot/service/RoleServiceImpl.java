@@ -21,14 +21,8 @@ public class RoleServiceImpl implements RoleService{
         return roleRepository.listRole();
     }
 
-    public Role getRoleById(Long id) {
-        Role role = null;
-        Optional<Role> optionalRole = roleRepository.findById(id);
-        if (optionalRole.isPresent()) {
-            role = optionalRole.get();
-        }
-
-        return role;
+    public Optional<Role> getRoleById(Long id) {
+        return roleRepository.findById(id);
     }
 
     @Transactional
@@ -51,7 +45,7 @@ public class RoleServiceImpl implements RoleService{
 
     @Transactional(readOnly = true)
     @Override
-    public Role getRoleByRole(String role) {
+    public Role getRoleByName(String role) {
         return roleRepository.findRoleByRole(role);
     }
 }

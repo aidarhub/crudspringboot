@@ -3,12 +3,13 @@ package com.example.crudspringboot.service;
 import com.example.crudspringboot.model.Role;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RoleService {
 
     List<Role> listRole();
 
-    Role getRoleById(Long id);
+    Optional<Role> getRoleById(Long id);
 
     void addRole(Role role);
 
@@ -16,5 +17,5 @@ public interface RoleService {
 
     void deleteRole(Role role);
 
-    Role getRoleByRole(String role);
+    Role getRoleByName(String role);
 }

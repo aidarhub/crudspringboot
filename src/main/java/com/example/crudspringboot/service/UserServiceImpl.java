@@ -42,33 +42,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void addUser(User user, int[] roles) {
-        if (roles != null) {
-            for (int roleId : roles) {
-                user.addRole(roleService.getRoleById((long) roleId));
-            }
-        }
+    public void addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
     @Override
-    public void updateUser(Long id, User user, int[] roles) {
+    public void updateUser(Long id, User user) {
         user.setId(id);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (roles != null) {
-            for (int roleId : roles) {
-                user.addRole(roleService.getRoleById((long) roleId));
-            }
+        if (!user.getPassword().equals("")) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        } else {
+            user.setPassword(getUserById(id).getPassword());
         }
-
         userRepository.save(user);
     }
 
     @Override
     public void deleteUser(Long id) {
         User user = getUserById(id);
-
         if (user != null) {
             userRepository.deleteById(id);
         }
@@ -76,7 +68,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User getUserByLogin(String login) {
-
         return userRepository.findUserByLogin(login);
     }
 

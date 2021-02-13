@@ -44,10 +44,9 @@ public class UsersController {
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam(value = "rolesId", required = false) int[] roles) {
+    public String addUser(@ModelAttribute("newUser") User user) {
         System.out.println("USER in POST-Mapping = " + user);
-        userService.addUser(user, roles);
+        userService.addUser(user);
         return "redirect:/users";
     }
 
@@ -69,9 +68,8 @@ public class UsersController {
 
     @PatchMapping("/{id}")
     public String updateUser(@PathVariable("id") Long id,
-                             @ModelAttribute("user") User user,
-                             @RequestParam(value = "rolesId", required = false) int[] roles) {
-        userService.updateUser(id, user, roles);
+                             @ModelAttribute("user") User user) {
+        userService.updateUser(id, user);
         return "redirect:/users";
     }
 
