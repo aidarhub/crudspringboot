@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add User</title>
@@ -7,25 +7,22 @@
 <body>
 <form th:method="post" th:action="@{/users}" th:object="${user}">
     <label for="login">Введите логин</label>
-    <input type="text" th:field="*{login}" id="login"/><br/>
+    <input type="text" th:field="*{username}" id="login"/><br/>
     <label for="password">Введите пароль</label>
     <input type="text" th:field="*{password}" id="password"/><br/>
-
-    <label for="listRoles">Выберите права</label>
+    <label>Выберите права</label>
     <div id="listRoles">
         <ul>
             <li th:each="role : ${listRole}">
                 <input type="checkbox" name="rolesId" th:value="${role.getId()}">
+                <label th:text="${role.getRole()}"></label>
             </li>
         </ul>
     </div>
-
     <input type="submit" value="Добавить пользователя"/>
 </form>
-
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
 </form>
-
 </body>
 </html>

@@ -15,8 +15,6 @@
 <div>Пароль:</div>
 <div th:text="${user.getPassword()}"></div>
 <br/>
-<div>Права:</div>
-<th:block th:each="role : ${user.getRoles()}"></th:block>
 
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
